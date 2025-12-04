@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Authentication</title>
+</head>
+<body>
+    <section id="loginPage">
+        <header>
+            <h1>Login</h1>
+            <p>Masukkan username dan password Anda</p>
+        </header>
+        
+        <main>
+            <form id="loginForm">
+                <fieldset>
+                    <legend>Form Login</legend>
+                    
+                    <table>
+                        <tr>
+                            <td><label for="username">Username:</label></td>
+                            <td>
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    name="username" 
+                                    placeholder="Masukkan username"
+                                    required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password:</label></td>
+                            <td>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Masukkan password"
+                                    required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit">Login</button>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+
+            <hr>
+            
+            <article>
+                <h3>Informasi Login:</h3>
+                <ul>
+                    <li>Username: <strong>aliifah2007</strong></li>
+                    <li>Password: <strong>integrity</strong></li>
+                </ul>
+            </article>
+        </main>
+    </section>
+
+    <section id="successPage" style="display: none;">
+        <header>
+            <h1>Login Sukses</h1>
+        </header>
+        <main>
+            <p>Selamat datang! Anda berhasil login ke sistem.</p>
+        </main>
+    </section>
+
+    <script>
+        function autentikasi(username, password) {
+            const validUsername = "aliifah2007";
+            const validPassword = "integrity";
+
+            if (username === validUsername && password === validPassword) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            
+            const loginBerhasil = autentikasi(usernameInput, passwordInput);
+            
+            if (loginBerhasil) {
+                alert('Login berhasil! Selamat datang.');
+                
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('successPage').style.display = 'block';
+            } else {
+                alert('Login gagal! Username atau password salah.');
+                
+                document.getElementById('loginForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Message - Praktikum 3</title>
+</head>
+<body>
+    <h2>Aplikasi Chatbox Sederhana</h2>
+    
+    <h3>Kotak Pesan:</h3>
+    <textarea id="chatBox" rows="15" cols="50" readonly></textarea>
+    
+    <br><br>
+    
+    <input type="text" id="messageInput" placeholder="Tulis pesan..." size="40">
+    <button onclick="sendMessage()">Kirim</button>
+
+    <script>
+        function sendMessage() {
+            var input = document.getElementById('messageInput');
+            var message = input.value;
+
+            if (message === "") {
+                alert("Pesan tidak boleh kosong!");
+                return;
+            }
+            
+            var chatBox = document.getElementById('chatBox');
+
+            chatBox.value += "Anda: " + message + "\n";
+
+            input.value = "";
+
+            
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        document.getElementById('messageInput').addEventListener('keypress', function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

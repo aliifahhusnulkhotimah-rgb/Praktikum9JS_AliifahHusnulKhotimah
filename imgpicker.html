@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Picker - Praktikum 4</title>
+</head>
+<body>
+    <h2>Image Picker</h2>
+    <p>Pilih gambar dari dropdown di bawah ini:</p>
+    
+    <label for="imagePicker">Pilih Gambar:</label>
+    <select id="imagePicker" onchange="displayImage()">
+        <option value="">-- Pilih Gambar --</option>
+        <option value="kucingpersia.jpg">Kucing Persia</option>
+        <option value="kucinghimalaya.jpg">Kucing Himalaya</option>
+        <option value="kucingmunchkin.jpg">Kucing Munchkin</option>
+        <option value="kucingbengal">Kucing Bengal</option>
+    </select>
+    
+    <br><br>
+    
+    <div id="imageContainer">
+        <img id="displayedImage" src="" alt="" width="500" style="display:none;">
+    </div>
+
+    <script>
+        function displayImage() {
+            var select = document.getElementById('imagePicker');
+            var selectedValue = select.value;
+            var selectedText = select.options[select.selectedIndex].text;
+            
+            var img = document.getElementById('displayedImage');
+            
+            if (selectedValue === "") {
+                img.src = "";
+                img.alt = "";
+                img.style.display = "none";
+            } else {
+                alert("Ini gambar " + selectedText);
+                
+                img.src = selectedValue;
+                img.alt = selectedText;
+                img.style.display = "block";
+
+                img.onerror = function() {
+                    alert("Gambar tidak dapat dimuat!\n\nFile: " + selectedText);
+                    img.style.display = "none";
+                };
+            }
+        }
+    </script>
+</body>
+</html>
